@@ -1,0 +1,24 @@
+{
+  "name": "lyrx2sldtester",
+  "version": "0.0.1",
+  "description": "Lyrx to SLD tester, based on geostyler parser and writer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ger-benjamin/lyrx-to-sld-tester.git"
+  },
+  "keywords": [
+    "lyrx",
+    "sld",
+    "geostyler"
+  ],
+  "author": "Benjamin Gerber",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ger-benjamin/lyrx-to-sld-tester/issues"
+  },
+  "homepage": "https://github.com/ger-benjamin/lyrx-to-sld-tester#readme"
+}
