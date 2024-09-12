@@ -1,13 +1,19 @@
 import { expect, test } from 'vitest';
-import { readFileSync, statSync } from "fs";
+import { readFileSync, statSync, writeFileSync } from "fs";
 import { LyrxParser } from "geostyler-lyrx-parser";
 import SldStyleParser from 'geostyler-sld-parser';
 import xmlFormat from 'xml-formatter';
 import {Style} from "geostyler-style";
 
+const resultPath = './test/sldResults';
 const lyrxFolder = "./test/data/";
 const expectedFolder = "./test/data/";
-const fileName = "afu_boriethbo_01";
+
+// const fileName = "kai_blattpk100_01";
+// const fileName = "afu_gwn_02";
+const fileName = "alg_wtkwildkorr_01";
+// const fileName = "afu_boriethbo_01";
+
 const lyrxParser = new LyrxParser();
 const sldStyleParser = new SldStyleParser({sldVersion: '1.1.0'});
 
@@ -44,14 +50,19 @@ const readLegacyGeoStylerStyle = (fileName: string): Record<string, any>|null =>
   return JSON.parse(readFileSync(path, 'utf-8'));
 }
 
+const writeSldStyleTofile = (sldStyle: string) => {
+  writeFileSync(`${resultPath}/result.sld`, xmlFormat(sldStyle));
+}
+
 test('lyrx 2 sld', async () => {
   const geoStylerStyle = await lyrxFileToGeoStyler(`${fileName}.lyrx`);
-  // See geoStyler diff
-  const legacyLyrx2sldGeostylerStyle = readLegacyGeoStylerStyle(`${fileName}_legacy.json`);
-  if (legacyLyrx2sldGeostylerStyle) {
-    expect(geoStylerStyle).toEqual(legacyLyrx2sldGeostylerStyle);
-  }
+  // Uncomment to check geoStyler diff
+  // const legacyLyrx2sldGeostylerStyle = readLegacyGeoStylerStyle(`${fileName}_legacy.json`);
+  // if (legacyLyrx2sldGeostylerStyle) {
+  //   expect(geoStylerStyle).toEqual(legacyLyrx2sldGeostylerStyle);
+  // }
   const sldStyle = await geoStylerStyleToSLD(geoStylerStyle);
+  writeSldStyleTofile(sldStyle);
   const sldExpected = readExpectedFile(`${fileName}.sld`);
   expect(xmlFormat(sldStyle!)).toEqual(xmlFormat(sldExpected));
 })

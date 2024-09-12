@@ -1,1 +1,4 @@
 /node_modules
+# Don't commit lyrx with ConnectionString info !
+*.lyrx
+/test/sldResults/*.sld
