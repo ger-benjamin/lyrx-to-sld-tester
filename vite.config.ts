@@ -1,14 +1,11 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import dts from 'vite-plugin-dts';
 
 export default defineConfig({
-  plugins: [
-    dts({
-      include: ['src/LyrxParser.ts']
-    })
-  ],
   build: {
+    rollupOptions: {
+      external: ['geostyler-lyrx-parser']
+    },
     lib: {
       name: 'geostyler-lyrx-parser',
       fileName: 'main',

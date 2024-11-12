@@ -11,8 +11,8 @@ const expectedFolder = "./test/data/";
 
 // const fileName = "kai_blattpk100_01";
 // const fileName = "afu_gwn_02";
-const fileName = "alg_wtkwildkorr_01";
-// const fileName = "afu_boriethbo_01";
+// const fileName = "alg_wtkwildkorr_01";
+const fileName = "afu_boriethbo_01";
 
 const lyrxParser = new LyrxParser();
 const sldStyleParser = new SldStyleParser({sldVersion: '1.1.0'});
